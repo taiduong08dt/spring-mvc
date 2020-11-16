@@ -1,19 +1,14 @@
 package com.laptrinhjavaweb.entity;
 
+
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "news")
-public class NewsEntity {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+public class NewsEntity extends BaseEntity{
 	
 	@Column(name = "title")
 	private String tittle;
@@ -26,11 +21,7 @@ public class NewsEntity {
 	
 	@Column(name = "content", columnDefinition = "TEXT")
 	private String content;
-
-	public Long getId() {
-		return id;
-	}
-
+	
 	public String getTittle() {
 		return tittle;
 	}
