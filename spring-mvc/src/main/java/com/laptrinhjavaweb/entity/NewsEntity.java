@@ -4,6 +4,9 @@ package com.laptrinhjavaweb.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -11,7 +14,7 @@ import javax.persistence.Table;
 public class NewsEntity extends BaseEntity{
 	
 	@Column(name = "title")
-	private String tittle;
+	private String title;
 	
 	@Column(name = "thumbnail")
 	private String thumbnail;
@@ -22,12 +25,16 @@ public class NewsEntity extends BaseEntity{
 	@Column(name = "content", columnDefinition = "TEXT")
 	private String content;
 	
-	public String getTittle() {
-		return tittle;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "categoryid")
+	private CategoryEntity category;
+	
+	public String getTitle() {
+		return title;
 	}
 
-	public void setTittle(String tittle) {
-		this.tittle = tittle;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getThumbnail() {
@@ -53,4 +60,13 @@ public class NewsEntity extends BaseEntity{
 	public void setContent(String content) {
 		this.content = content;
 	}
+
+	public CategoryEntity getCategory() {
+		return category;
+	}
+
+	public void setCategory(CategoryEntity category) {
+		this.category = category;
+	}
+	
 }

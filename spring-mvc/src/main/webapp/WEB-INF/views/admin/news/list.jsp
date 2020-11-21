@@ -13,7 +13,7 @@
 
 <body>
 	<div class="main-content">
-		<form action="<c:url value='/admin-news'/>" id="formSubmit" method="get">
+		<form action="<c:url value='/quan-tri/bai-viet/danh-sach'/>" id="formSubmit" method="get">
 			<div class="main-content-inner">
 				<div class="breadcrumbs ace-save-state" id="breadcrumbs">
 					<ul class="breadcrumb">
@@ -35,10 +35,11 @@
 								<div class="table-btn-controls">
 									<div class="pull-right tableTools-container">
 										<div class="dt-buttons btn-overlap btn-group">
+											<c:url value="/quan-tri/bai-viet/chinh-sua" var="createNewsURL"/>
 											<a flag="info"
 												class="dt-button buttons-colvis btn btn-white btn-primary btn-bold"
 												data-toggle="tooltip" title='Thêm bài viết'
-												href='<c:url value="/admin-news?type=edit"/>'> 
+												href='${createNewsURL}'> 
 												<span>
 													<i class="fa fa-plus-circle bigger-110 purple"></i>
 												</span>
@@ -72,8 +73,7 @@
 														<td>${item.title}</td>
 														<td>${item.shortDescription}</td>
 														<td>
-															<c:url var="editURL" value="/admin-news">
-																<c:param name="type" value="edit"></c:param>
+															<c:url var="editURL" value="/quan-tri/bai-viet/chinh-sua">
 																<c:param name="id" value="${item.id}"></c:param>
 															</c:url> 
 															<a class="btn btn-sm btn-primary btn-edit"
@@ -89,10 +89,7 @@
 										</table>
 										<ul class="pagination" id="pagination"></ul>
 										<input type="hidden" value="" id="page" name="page" /> 
-										<input type="hidden" value="" id="maxPageItem" name="maxPageItem" />
-										<input type="hidden" value="" id="sortName" name="sortName" />
-										<input type="hidden" value="" id="sortBy" name="sortBy" />
-										<input type="hidden" value="list" id="type" name="type" />
+										<input type="hidden" value="" id="limit" name="limit" />
 									</div>
 								</div>
 
@@ -117,9 +114,7 @@
 					//console.info(page + ' (from options)');
 					if (currentPage != page) {
 						$('#page').val(page);
-						$('#sortName').val('title');
-						$('#sortBy').val('desc');
-						$('#maxPageItem').val(limit);
+						$('#limit').val(limit);
 						$('#formSubmit').submit();
 					}
 				}

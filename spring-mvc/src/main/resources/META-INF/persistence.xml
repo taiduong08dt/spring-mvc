@@ -4,5 +4,6 @@
         <class>com.laptrinhjavaweb.entity.NewsEntity</class>
         <class>com.laptrinhjavaweb.entity.UserEntity</class>
         <class>com.laptrinhjavaweb.entity.RoleEntity</class>
+        <class>com.laptrinhjavaweb.entity.CategoryEntity</class>
     </persistence-unit>
 </persistence>

@@ -2,9 +2,13 @@ package com.laptrinhjavaweb.service;
 
 import java.util.List;
 
-import com.laptrinhjavaweb.model.NewsModel;
-import com.laptrinhjavaweb.paging.Pageble;
+import org.springframework.data.domain.Pageable;
+
+import com.laptrinhjavaweb.dto.NewsDTO;
 
 public interface INewsService {
-	List<NewsModel> findAll();
+	List<NewsDTO> findAll(Pageable pageable);
+	int getTotalItem();
+	NewsDTO findById(long id);
+	NewsDTO save(NewsDTO dto);
 }

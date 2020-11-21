@@ -16,7 +16,7 @@
             </a>
           </li>
           <security:authorize access="isAnonymous()">
-          		<li class="nav-item"><a class="nav-link" href="#">Đăng nhập</a></li>
+          		<li class="nav-item"><a class="nav-link" href="<c:url value ='/dang-nhap'/>">Đăng nhập</a></li>
           		<li class="nav-item"><a class="nav-link" href="#">Đăng ký</a> </li>
           </security:authorize>
           
