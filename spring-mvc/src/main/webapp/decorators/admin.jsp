@@ -18,6 +18,9 @@
     <script src="<c:url value='/ckeditor/ckeditor.js' />"></script>
     
     <script src="<c:url value='/template/paging/jquery.twbsPagination.js' />"></script>
+    <!-- sweetalert -->
+    <script src="<c:url value='/template/admin/sweetalert/sweetalert2.min.js' />"></script>
+    <link rel="stylesheet" href="<c:url value='/template/admin/sweetalert/sweetalert2.min.css' />" />
     
     <script src='<c:url value="/ckeditor/ckeditor.js"/>'></script>
 </head>

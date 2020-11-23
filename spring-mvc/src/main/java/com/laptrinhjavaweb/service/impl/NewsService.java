@@ -68,4 +68,12 @@ public class NewsService implements INewsService{
 		return newsConverter.toDto(newsRepository.save(newsEntity));
 	}
 
+	@Override
+	@Transactional
+	public void delete(long[] ids) {
+		for (long id : ids) {
+			newsRepository.delete(id);
+		}
+	}
+
 }

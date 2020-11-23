@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp"%>
-<c:url var="APIurl" value="/api-admin-news" />
-<c:url var="NewsUrl" value="/admin-news" />
+<c:url var="newsAPI" value="/api/news" />
+<c:url var="newsURL" value="/quan-tri/bai-viet/danh-sach" />
 <!DOCTYPE html>
 <html>
 
@@ -44,7 +44,7 @@
 													<i class="fa fa-plus-circle bigger-110 purple"></i>
 												</span>
 											</a>
-											<button id="btnDelete" type="button"
+											<button id="btnDelete" type="button" onclick="warningBeforeDelete()"
 												class="dt-button buttons-html5 btn btn-white btn-primary btn-bold"
 												data-toggle="tooltip" title='Xóa bài viết'>
 												<span> <i class="fa fa-trash-o bigger-110 pink"></i>
@@ -121,26 +121,37 @@
 			});
 		});
 
-		$('#btnDelete').click(function(){
-			var data = {};
-			var ids = $('tbody input[type=checkbox]:checked').map(function () {
-		            return $(this).val();
-		        }).get();
-				data['ids'] = ids;
-				deleteNews(data);
-		});
+		function warningBeforeDelete() {
+			swal({
+			  title: "Xác nhận xóa",
+			  text: "Bạn có chắc chắn muốn xóa hay không",
+			  type: "warning",
+			  showCancelButton: true,
+			  confirmButtonClass: "btn-success",
+			  cancelButtonClass: "btn-danger",
+			  confirmButtonText: "Xác nhận",
+			  cancelButtonText: "Hủy bỏ",
+			}).then(function(isConfirm) {
+			  if (isConfirm) {
+					var ids = $('tbody input[type=checkbox]:checked').map(function () {
+			            return $(this).val();
+			        }).get();
+					deleteNews(ids);
+			  }
+			});
+		}
 
 		function deleteNews(data) {
 			$.ajax({
-				url: '${APIurl}',
+				url: '${newsAPI}',
 				type: 'DELETE',
 				contentType: 'application/json',
-				data: JSON.stringify(data),
+				data : JSON.stringify(data),
 				success: function (result) {
-					window.location.href = "${NewsUrl}?type=list&maxPageItem=2&page=1&message=delete_success&alert=success";
+					window.location.href = "${newsURL}?limit=2&page=1&message=delete_success";
 				},
 				error: function (error) {
-					window.location.href = "${NewsUrl}?type=list&maxPageItem=2&page=1&message=error_systemalert=danger";
+					window.location.href = "${newsURL}?limit=2&page=1&message=error_system";
 				}
 			});
 		}
